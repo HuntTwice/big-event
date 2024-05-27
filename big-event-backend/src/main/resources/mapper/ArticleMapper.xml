@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.bigeventbackend.mapper.ArticleMapper">
+    <!--    statement-->
+
+
+    <insert id="add">
+        insert into article(title, content, cover_img, state, category_id, create_user, create_time, update_time)
+        values (#{title}, #{content}, #{coverImg}, #{state}, #{categoryId}, #{createUser}, now(), now())
+    </insert>
+    <select id="getByStateAndCategoryId" resultType="map">
+        select category_name, title, article.create_time, state
+        from article
+                 join category
+                      on article.category_id = category.id
+        where category_name = #{category}
+          and state = #{state}
+    </select>
+</mapper>

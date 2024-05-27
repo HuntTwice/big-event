@@ -1,0 +1,57 @@
+#通用信息,指定生效的环境
+#多环境下的共同属性
+spring:
+  profiles:
+    active: dev
+
+
+---
+#开发环境
+server:
+  port: 9091
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/big_event?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: baiyue
+    password: by
+
+
+#logging:
+#  level:
+#    com.zc.bigevent.mapper: debug
+#
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #用于mybatis在控制台打印sql日志
+    map-underscore-to-camel-case: true #开启驼峰命名和下划线命名的自动转换
+  mapper-locations: classpath:mapper/*.xml #指定mapper.xml的路径
+  type-aliases-package: com.zc.bigeventbackend.pojo #为com.zc.bigevent.pojo下的所有类指定别名，默认就是类名，这样mapper.xml中就不要写全类名了
+
+
+#  文件存储相关的信息
+file-system:
+  dir: E:/Project/JavaProject/big-event/big-event-FileSytem
+
+
+---
+
+#测试环境
+spring:
+  config:
+    activate:
+      on-profile: test
+
+
+
+
+---
+#生产环境
+spring:
+  config:
+    activate:
+      on-profile: pro
