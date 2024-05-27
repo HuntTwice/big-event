@@ -4,7 +4,6 @@ import com.zc.bigeventbackend.pojo.Article;
 import com.zc.bigeventbackend.result.Result;
 import com.zc.bigeventbackend.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +25,7 @@ public class ArticleController {
         articleService.add(article);
         return Result.success("添加成功");
     }
+
 
 
     @GetMapping
